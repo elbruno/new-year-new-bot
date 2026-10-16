@@ -4,7 +4,7 @@
 
 **Explore the series and proposed architecture:** [Project page](https://elbruno.github.io/new-year-new-bot/)
 
-![Concept visualization of a festive AI desk companion on a developer desk](images/new-year-new-bot-concept.png)
+![Concept visualization of a festive AI desk companion on a developer desk](docs/images/new-year-new-bot-concept.png)
 
 > **Concept art:** This illustration communicates the project's creative direction. It is not a photograph of a working prototype, and the GitHub-inspired details are not an approved or manufactured accessory.
 
