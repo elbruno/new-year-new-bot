@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17162f">
+  <meta name="description" content="New Year, New Bot is a proposed livestream series exploring an expressive AI desk robot with StackChan, .NET, Aspire, and agent technologies.">
+  <title>New Year, New Bot | Tiny robot. Big plans for 2027.</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17162f;
+      --muted: #57566e;
+      --paper: #fbfaff;
+      --purple: #6941c6;
+      --purple-dark: #5030a0;
+      --lavender: #eee8ff;
+      --cyan: #8be8f5;
+      --gold: #ffd166;
+      --line: #ded9ef;
+      --card: #fff;
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.65 "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+    a { color: var(--purple-dark); }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--purple);
+      outline-offset: 3px;
+    }
+    .wrap { width: min(var(--max-width), calc(100% - 40px)); margin-inline: auto; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 18px;
+    }
+    .brand { color: var(--ink); font-weight: 800; text-decoration: none; letter-spacing: -.02em; }
+    .brand-mark { color: var(--purple); }
+    .topbar nav { display: flex; flex-wrap: wrap; gap: 22px; }
+    .topbar nav a { color: var(--muted); font-size: .94rem; font-weight: 650; text-decoration: none; }
+    .topbar nav a:hover { color: var(--purple-dark); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 68px 0 72px;
+      background:
+        radial-gradient(ellipse at 83% 10%, rgba(255, 209, 102, .24), transparent 28%),
+        radial-gradient(ellipse at 10% 90%, rgba(139, 232, 245, .18), transparent 34%),
+        linear-gradient(135deg, #f1ebff, #fbfaff 55%, #f7f2ff);
+      border-block: 1px solid var(--line);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      align-items: center;
+      gap: clamp(32px, 6vw, 76px);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      color: var(--purple-dark);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 650px; margin-bottom: 12px; font-size: clamp(2.7rem, 6vw, 5.1rem); line-height: .99; letter-spacing: -.065em; }
+    .tagline { margin-bottom: 20px; color: var(--purple-dark); font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 700; }
+    .intro { max-width: 550px; margin-bottom: 28px; color: var(--muted); font-size: 1.1rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 10px 18px;
+      border: 1px solid var(--purple);
+      border-radius: 999px;
+      background: var(--purple);
+      color: white;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .button:hover { background: var(--purple-dark); }
+    .button.secondary { background: transparent; color: var(--purple-dark); }
+    .button.secondary:hover { background: var(--lavender); }
+    .hero-figure { margin: 0; }
+    .hero-figure img {
+      display: block;
+      width: 100%;
+      border: 1px solid rgba(105, 65, 198, .16);
+      border-radius: 26px;
+      box-shadow: 0 24px 70px rgba(41, 29, 78, .16);
+    }
+    .caption { margin: 10px 4px 0; color: var(--muted); font-size: .78rem; }
+    .concept-note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      background: rgba(255, 255, 255, .68);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    section { padding-block: 78px; }
+    .section-heading { max-width: 710px; margin-bottom: 30px; }
+    .section-heading h2 { margin-bottom: 10px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -.045em; }
+    .section-heading p { margin-bottom: 0; color: var(--muted); font-size: 1.05rem; }
+    .series { background: #fff; }
+    .series-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 28px; }
+    .pill {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+    .pill.proposed { border-color: #f0d58e; background: #fff8e7; color: #6c4a00; }
+    .episode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .episode {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: 0 8px 28px rgba(35, 27, 65, .045);
+    }
+    .episode-number { margin-bottom: 12px; color: var(--purple); font-size: .78rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .episode h3 { margin-bottom: 8px; font-size: 1.27rem; line-height: 1.25; letter-spacing: -.02em; }
+    .episode time { margin-bottom: 16px; color: var(--muted); font-size: .88rem; font-weight: 700; }
+    .episode-label { margin-bottom: 16px; color: var(--muted); font-size: .88rem; font-weight: 700; }
+    .episode p { margin-bottom: 18px; color: var(--muted); font-size: .96rem; }
+    .episode .stack { margin-top: auto; padding-top: 12px; border-top: 1px solid #eeeaf6; color: var(--purple-dark); font-size: .82rem; font-weight: 700; }
+    .series-note { margin-top: 20px; color: var(--muted); font-size: .9rem; }
+
+    .architecture { background: var(--lavender); }
+    .architecture-figure { margin: 30px 0 0; padding: 14px; border: 1px solid rgba(105, 65, 198, .2); border-radius: 20px; background: #fff; }
+    .architecture-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .architecture-figure figcaption { padding: 12px 8px 2px; color: var(--muted); font-size: .86rem; }
+    .architecture-copy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; }
+    .architecture-copy article { padding: 20px; border: 1px solid rgba(105, 65, 198, .16); border-radius: 14px; background: rgba(255,255,255,.75); }
+    .architecture-copy h3 { margin-bottom: 7px; font-size: 1.04rem; }
+    .architecture-copy p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .status-note { margin-top: 20px; padding: 17px 19px; border-radius: 12px; background: #fff; color: var(--muted); font-size: .91rem; }
+    .status-note strong { color: var(--ink); }
+
+    .closing {
+      padding-block: 62px;
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+    }
+    .closing h2 { margin-bottom: 9px; font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -.04em; }
+    .closing p { max-width: 640px; margin: 0 auto 22px; color: #d3d0e1; }
+    .closing .button { border-color: var(--cyan); background: var(--cyan); color: var(--ink); }
+    .closing .button:hover { background: #b6f2f8; }
+    footer { padding-block: 22px; background: #111022; color: #b9b6cd; font-size: .82rem; text-align: center; }
+    footer p { margin: 0; }
+
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding-block: 48px; }
+      .hero-figure { max-width: 650px; }
+      .episode-grid { grid-template-columns: 1fr; }
+      .episode { min-height: 0; }
+      .architecture-copy { grid-template-columns: 1fr; }
+      section { padding-block: 56px; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(var(--max-width), calc(100% - 28px)); }
+      .topbar { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .topbar nav { gap: 15px; }
+      .hero { padding-block: 38px; }
+      .episode { padding: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar">
+    <a class="brand" href="#top"><span class="brand-mark">✦</span> New Year, New Bot</a>
+    <nav aria-label="Main navigation">
+      <a href="#series">The series</a>
+      <a href="#architecture">Architecture</a>
+      <a href="https://github.com/elbruno/new-year-new-bot">Repository</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">A proposed developer livestream series</p>
+          <h1 id="hero-title">New Year,<br>New Bot</h1>
+          <p class="tagline">Tiny robot. Big plans for 2027.</p>
+          <p class="intro">What if a tiny desk robot had a .NET brain? We’re exploring a playful, hands-on build that brings StackChan, .NET, AI, and agent technologies together.</p>
+          <div class="actions">
+            <a class="button" href="#series">Explore the sessions</a>
+            <a class="button secondary" href="https://github.com/elbruno/new-year-new-bot">View the repository</a>
+          </div>
+          <p class="concept-note"><strong>Coming soon:</strong> the project, demos, and learning resources are in progress. Stream dates, channel, and collaboration details are proposed and not yet confirmed.</p>
+        </div>
+        <figure class="hero-figure">
+          <img src="../images/new-year-new-bot-concept.png" alt="Concept visualization of an expressive desk robot wearing a party hat on a festive developer desk">
+          <figcaption class="caption">Concept visualization of the proposed desk-companion experience.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="series" id="series" aria-labelledby="series-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Three episodes, one build</p>
+          <h2 id="series-title">From tiny robot to helpful agent</h2>
+          <p>Each session adds a layer, starting with the physical robot, then building its .NET-powered backend, and finally exploring agent capabilities.</p>
+        </div>
+        <div class="series-meta" aria-label="Series status">
+          <span class="pill proposed">Proposed series</span>
+          <span class="pill">Three sessions</span>
+          <span class="pill">Streaming details to be confirmed</span>
+        </div>
+        <div class="episode-grid">
+          <article class="episode">
+            <span class="episode-number">Episode 01 · Robot + .NET</span>
+            <h3>Bring Your AI Desk Robot to Life</h3>
+            <p class="episode-label">Episode 1 of 3</p>
+            <p>Meet StackChan, the little AI desk robot at the heart of the series. Program expressions and movements with a little C++, then connect it to local ASP.NET Core services for a first end-to-end interaction.</p>
+            <span class="stack">StackChan · C++ · ASP.NET Core</span>
+          </article>
+          <article class="episode">
+            <span class="episode-number">Episode 02 · Backend + AI</span>
+            <h3>Build Its AI Brain with .NET and Aspire</h3>
+            <p class="episode-label">Episode 2 of 3</p>
+            <p>Build and orchestrate the backend with .NET and Aspire, connect an AI model through Microsoft Foundry, and use Microsoft Agent Framework to shape the companion’s tools and behavior.</p>
+            <span class="stack">.NET · Aspire · Foundry · Agent Framework</span>
+          </article>
+          <article class="episode">
+            <span class="episode-number">Episode 03 · Agent + Context</span>
+            <h3>Give Your Bot an Agentic Brain</h3>
+            <p class="episode-label">Episode 3 of 3</p>
+            <p>Explore extending the companion with GitHub Copilot SDK and WorkIQ for relevant Microsoft 365 context. Use controlled demo data to turn useful updates into thoughtful responses and expressions.</p>
+            <span class="stack">Copilot SDK · WorkIQ · Synthetic demo data</span>
+          </article>
+        </div>
+        <p class="series-note">The session order and themes are a working proposal. Schedule, times, streaming channel, and collaboration details will be shared once confirmed.</p>
+      </div>
+    </section>
+
+    <section class="architecture" id="architecture" aria-labelledby="architecture-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">The proposed design</p>
+          <h2 id="architecture-title">A tiny robot, with a .NET brain</h2>
+          <p>The robot handles sensing and expression. A local .NET backend coordinates behavior, AI services, and observability, with clear boundaries around private work context.</p>
+        </div>
+        <figure class="architecture-figure">
+          <img src="../images/proposed-architecture.png" alt="Proposed architecture: StackChan connects over Wi-Fi to an ASP.NET Core and .NET backend. RobotHub manages behavior and robot controls, a work agent can use Microsoft Agent Framework and GitHub Copilot SDK, Microsoft Foundry supplies AI models, and WorkIQ is proposed for read-only Microsoft 365 context. Aspire provides logs and traces.">
+          <figcaption>Proposed desktop-phase architecture, not a diagram of a completed or deployed system.</figcaption>
+        </figure>
+        <div class="architecture-copy">
+          <article>
+            <h3>01 · The expressive edge</h3>
+            <p>StackChan runs C++ firmware and connects over Wi-Fi. The first goal is a simple, reliable link for expressions, gestures, and service responses.</p>
+          </article>
+          <article>
+            <h3>02 · The .NET brain</h3>
+            <p>ASP.NET Core services own the companion’s behavior and controls. Aspire helps run the services together and inspect application health and traces.</p>
+          </article>
+          <article>
+            <h3>03 · AI, with guardrails</h3>
+            <p>Foundry and agent technologies are proposed for later episodes. Work-context demonstrations start with synthetic data; private details stay out of public robot alerts.</p>
+          </article>
+        </div>
+        <p class="status-note"><strong>Project status:</strong> this is an evolving design. Hardware behavior, AI integrations, WorkIQ access, and the livestream plan require validation. Early demos can use a simulator and synthetic data so viewers can follow along without a device or work-account access.</p>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap">
+        <h2>Curious what a desk bot can do?</h2>
+        <p>Follow the public repository for project updates, episode resources, and the build as it takes shape.</p>
+        <a class="button" href="https://github.com/elbruno/new-year-new-bot">Visit the GitHub repository</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>New Year, New Bot · A community project in progress · All third-party names and marks belong to their respective owners.</p>
+    </div>
+  </footer>
+</body>
+</html>
