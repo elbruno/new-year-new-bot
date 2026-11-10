@@ -8,6 +8,10 @@
 
 > **Concept art:** This illustration communicates the project's creative direction. It is not a photograph of a working prototype, and the GitHub-inspired details are not an approved or manufactured accessory.
 
+## .NET Conf 2026 session
+
+In **[Give Your .NET Agent a Face: Building an AI Desk Companion with M5Stack](https://dotnet.microsoft.com/en-us/conf/2026/agenda/brk040)**, Bruno Capuano demonstrates an M5Stack/StackChan desk companion connected to a .NET 11 backend, with Aspire, Microsoft Foundry, Microsoft Agent Framework, and GitHub Copilot SDK. The session covers the architecture, a live interaction, and safe use of work context.
+
 ## Code samples
 
 [Which device is on this COM port?](tools/serial-ports/README.md) is a standalone
