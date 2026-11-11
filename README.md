@@ -14,6 +14,8 @@ In **[Give Your .NET Agent a Face: Building an AI Desk Companion with M5Stack](h
 
 Watch the session on [YouTube](https://www.youtube.com/watch?v=7EXrTrcJ7zA).
 
+Presentation slides (v07): [Download the PDF](sessions/26-11-dotnetconf/Give-Your-DotNet-Agent-a-Face-v07.pdf).
+
 ## Code samples
 
 [Which device is on this COM port?](tools/serial-ports/README.md) is a standalone
