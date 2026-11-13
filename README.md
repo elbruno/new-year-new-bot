@@ -2,6 +2,8 @@
 
 **Tiny robot. Big plans for 2027.**
 
+**[Get the robot](https://aka.ms/newyearnewbot/robot)**
+
 **Explore the series and proposed architecture:** [Project page](https://aka.ms/newyearnewbot) ([direct link](https://elbruno.github.io/new-year-new-bot/))
 
 ![Concept visualization of a festive AI desk companion on a developer desk](docs/images/new-year-new-bot-concept.png)
