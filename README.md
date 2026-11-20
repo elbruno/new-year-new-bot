@@ -20,13 +20,13 @@ Presentation slides (v07): [Download the PDF](sessions/26-11-dotnetconf/Give-You
 
 ## Code samples
 
-[Which device is on this COM port?](tools/serial-ports/README.md) is a standalone
+[Which device is on this COM port?](src/serial-ports/README.md) is a standalone
 .NET 10 file-based C# console app for Windows. Inspect USB device metadata,
 watch unplug/replug events, or export JSON without opening a serial port or
 changing firmware. Includes synthetic self-tests that need no hardware.
 
 ```powershell
-Set-Location tools\serial-ports
+Set-Location src\serial-ports
 dotnet run SerialPorts.cs
 dotnet run SerialPorts.cs -- --watch
 dotnet run SerialPorts.cs -- --self-test

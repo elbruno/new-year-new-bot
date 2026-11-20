@@ -5,7 +5,7 @@ RobotHub, Aspire, PowerShell subprocess, admin prompt or serial connection is
 required. The first run restores `System.Management` from NuGet.
 
 ```powershell
-Set-Location tools\serial-ports
+Set-Location src\serial-ports
 dotnet --version
 # A stable 10.0.x SDK. Verified locally with 10.0.402.
 dotnet run SerialPorts.cs
