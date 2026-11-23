@@ -12,8 +12,11 @@
 
 ## Presentation and speaker notes
 
-The presentation deck and full presenter runbook are not currently published
-as public downloads.
+The approved V09 PowerPoint deck is not published as a public download. The
+V10 Markdown file is the current presenter runbook; no V10 PowerPoint was
+created.
+
+- [Episode 1 V10 speaker notes (Markdown)](https://github.com/elbruno/new-year-new-bot/blob/main/docs/presentations/New-Year-New-Bot-Episode-1-V10.md)
 
 ## Episode 1 code
 
