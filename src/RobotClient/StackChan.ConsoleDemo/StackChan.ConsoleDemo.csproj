@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.57.2" />
+    <ProjectReference Include="..\StackChan.RobotClient\StackChan.RobotClient.csproj" />
+  </ItemGroup>
+</Project>
