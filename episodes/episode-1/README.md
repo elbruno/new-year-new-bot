@@ -8,10 +8,20 @@ client used to inspect its status and request supported expressions.
 
 ## Watch and follow
 
+- [Watch the .NET livestream](https://www.youtube.com/watch?v=9pk9HERln5k)
+- [Watch the Microsoft Reactor livestream](https://www.youtube.com/watch?v=L-zaWiyjDEU)
 - [Official New Year, New Bot series website](https://elbruno.github.io/new-year-new-bot/)
 - [Episode 1 event page](https://aka.ms/newyearnewbot/1)
-- [Episode 1 livestream recording](https://www.youtube.com/watch?v=L-zaWiyjDEU)
 - [Public project repository](https://github.com/elbruno/new-year-new-bot)
+
+## Tools used during the session
+
+**[WebcamWindows - Lightweight C# webcam viewer](https://github.com/elbruno/webcam-windows)**
+
+This open-source Windows viewer uses C#, .NET, Windows Forms, OpenCvSharp, and
+DirectShow to show a webcam feed in a clean window. It provided a simple camera
+preview during the demo without the extra interface or controls of streaming
+software.
 
 ## Firmware 0.5.1 source
 

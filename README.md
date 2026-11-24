@@ -43,9 +43,14 @@ sharing terminal output or recording a demo.
 - [C# console application](src/RobotClient/StackChan.ConsoleDemo/)
 - [Official New Year, New Bot series website](https://elbruno.github.io/new-year-new-bot/)
 
-Episode 1 explores the StackChan robot, its firmware, and its C# client. The
-episode resource page links to the source projects, build instructions, and
+Episode 1, **Bring Your AI Desk Robot to Life**, took place on November 24,
+2026. Watch the [.NET livestream](https://www.youtube.com/watch?v=9pk9HERln5k)
+or the [Microsoft Reactor livestream](https://www.youtube.com/watch?v=L-zaWiyjDEU).
+The episode resource page links to the source projects, build instructions, and
 official device and .NET documentation.
+
+Next up: [Episode 2, Build Its AI Brain with .NET and Aspire](https://developer.microsoft.com/en-us/reactor/events/27762/),
+on December 1, 2026 at 10:00 AM PST / 1:00 PM EST / 6:00 PM UTC.
 
 **Project hub:** [aka.ms/newyearnewbot](https://aka.ms/newyearnewbot)
 
