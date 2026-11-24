@@ -57,6 +57,14 @@ syntax. Add headers to new files and maintain them when responsibilities change;
 keep them accurate and concise, and preserve existing license notices and
 required compiler directives. Generated and third-party code is excluded.
 
+## Firmware API documentation
+
+When the firmware HTTP API changes, update the
+[API reference](docs/api/firmware-http-api.md) alongside it. Keep routes,
+request and response contracts, examples, errors, and build availability
+aligned with the implementation, and publish the reference together with
+the corresponding firmware changes. Unrelated code changes need no API update.
+
 ---
 
 *A community project in progress. Hardware, software, schedule, and stream details will be shared as they’re confirmed.*

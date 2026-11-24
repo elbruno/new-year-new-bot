@@ -17,6 +17,7 @@ client used to inspect its status and request supported expressions.
 
 - [Complete PlatformIO source project](../../src/firmware/usb-avatar/)
 - [Firmware build instructions and pinned dependencies](../../src/firmware/usb-avatar/README.md)
+- [Firmware HTTP API Reference](https://github.com/elbruno/new-year-new-bot/blob/main/docs/api/firmware-http-api.md): Complete reference for the StackChan firmware HTTP endpoints, including methods, request/response contracts, build availability, and PowerShell examples.
 
 The source is the committed 0.5.1 draft snapshot. It is not a coordinated
 release or evidence that the files match an installed firmware image.
