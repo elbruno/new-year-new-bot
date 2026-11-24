@@ -1,3 +1,9 @@
+// Goal: Provide an interactive console for exploring the robot.
+// Responsibilities: Present menus, select actions, and report results.
+// How it works:
+// 1. Startup resolves the address and creates the reusable robot client.
+// 2. Menu choices dispatch operations through that client.
+// 3. The console displays responses and warns about uncertain outcomes.
 using System.Runtime.CompilerServices;
 using Spectre.Console;
 using StackChan.RobotClient;

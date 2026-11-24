@@ -1,3 +1,9 @@
+// Goal: Manage the firmware's bounded notification lifecycle.
+// Responsibilities: Define notification templates, identity, state, and receipts.
+// How it works:
+// 1. A request selects a supported template and notification identity.
+// 2. Presentation and user choices advance the notification state.
+// 3. Snapshots and receipts report progress or expiration.
 #pragma once
 
 #include "LabOperationalEvents.h"

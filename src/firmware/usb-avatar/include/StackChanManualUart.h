@@ -1,3 +1,9 @@
+// Goal: Adapt the ESP32 UART to the manual servo transport.
+// Responsibilities: Configure UART and expose timing and byte operations.
+// How it works:
+// 1. The adapter installs and configures the UART driver and pins.
+// 2. The manual transport sends and receives bytes through the adapter.
+// 3. Driver status and clock readings support bounded transactions.
 #pragma once
 
 #include <driver/uart.h>

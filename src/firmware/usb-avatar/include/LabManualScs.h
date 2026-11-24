@@ -1,3 +1,9 @@
+// Goal: Execute bounded manual SCS servo transactions.
+// Responsibilities: Track UART transaction phases, Stop, and uncertain writes.
+// How it works:
+// 1. Callers request an allowed read or servo operation.
+// 2. Ticks advance send, drain, and response phases.
+// 3. Results distinguish completion, cancellation, and faults.
 #pragma once
 
 #include <stddef.h>

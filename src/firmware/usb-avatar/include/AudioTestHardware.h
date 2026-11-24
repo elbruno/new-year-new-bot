@@ -1,3 +1,9 @@
+// Goal: Connect the audio test to the device's storage and speaker.
+// Responsibilities: Load and list audio files and provide playback resources.
+// How it works:
+// 1. Background tasks inspect storage or load a requested file.
+// 2. The audio test consumes the result through its backend interface.
+// 3. Playback and resource cleanup are coordinated with the device.
 #pragma once
 
 #include <M5Unified.h>

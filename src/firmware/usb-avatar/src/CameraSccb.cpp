@@ -1,3 +1,9 @@
+// Goal: Route camera SCCB calls through the firmware's shared bus adapter.
+// Responsibilities: Wrap camera register operations in the Wi-Fi build.
+// How it works:
+// 1. Camera library calls reach the linked wrapper functions.
+// 2. Wrappers forward supported transfers to the SCCB adapter.
+// 3. Unsupported operations and bus errors are reported as failures.
 #if defined(NETBOT_WIFI_LAB)
 #include "CameraSccb.h"
 

@@ -1,3 +1,9 @@
+// Goal: Define reference values for a specific checked motion test.
+// Responsibilities: Group test limits, calibration, and home references.
+// How it works:
+// 1. The test selects the configured motion envelope.
+// 2. Calibration and home values are supplied as trial references.
+// 3. Test code uses the configuration with its own admission checks.
 #pragma once
 
 #include "LabCheckedMotionConfig.h"

@@ -1,3 +1,9 @@
+// Goal: Convert a captured camera frame into a bounded JPEG image.
+// Responsibilities: Encode supported frames and report cancellation or errors.
+// How it works:
+// 1. The helper inspects the captured frame and cancellation state.
+// 2. RGB565 image data is encoded to JPEG and checked against a size limit.
+// 3. The result reports the bytes or an explicit failure.
 #pragma once
 #include <esp_camera.h>
 #include <img_converters.h>

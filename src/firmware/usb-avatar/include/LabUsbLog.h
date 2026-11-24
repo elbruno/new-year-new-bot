@@ -1,3 +1,9 @@
+// Goal: Report firmware diagnostic events over the USB log sink.
+// Responsibilities: Format bounded state, event, and bus observations.
+// How it works:
+// 1. Callers provide runtime events and snapshots.
+// 2. The logger formats best-effort records for the sink.
+// 3. Loss counters and optional retained logging expose dropped observations.
 #pragma once
 
 #include <stdio.h>

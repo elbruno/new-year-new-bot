@@ -1,3 +1,9 @@
+// Goal: Coordinate stopping during manual servo diagnostics.
+// Responsibilities: Track Stop phases and their confirmation state.
+// How it works:
+// 1. A Stop request starts the bounded stop sequence.
+// 2. Ticks advance the servo transaction phases.
+// 3. The result distinguishes confirmed, canceled, and failed outcomes.
 #pragma once
 
 #include "LabManualScs.h"

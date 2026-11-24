@@ -1,3 +1,9 @@
+// Goal: Show a bounded temporary text message on the robot display.
+// Responsibilities: Validate text and track display ownership and cancellation.
+// How it works:
+// 1. An eligible request queues a validated message.
+// 2. Ticks start the display and watch its duration and Stop state.
+// 3. Completion or cancellation allows the previous display to be restored.
 #pragma once
 
 #include <stdint.h>

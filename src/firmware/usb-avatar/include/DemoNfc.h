@@ -1,3 +1,9 @@
+// Goal: Support the firmware's NFC text-reading demonstration.
+// Responsibilities: Coordinate NFC hardware, bus access, and read state.
+// How it works:
+// 1. The demo admits a read when the shared bus is available.
+// 2. A task communicates with the NFC reader and decodes text.
+// 3. Ticks publish results and handle cancellation or cleanup errors.
 #pragma once
 
 #include <M5Unified.h>

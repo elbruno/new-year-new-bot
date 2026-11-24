@@ -1,3 +1,9 @@
+// Goal: Provide timed avatar animation previews for comparison.
+// Responsibilities: Define preview samples, poses, and animation timing.
+// How it works:
+// 1. A selected sample starts a bounded preview.
+// 2. Timing helpers compute the current pose and frame schedule.
+// 3. The display renderer uses the pose to draw the preview.
 #pragma once
 
 #include <math.h>

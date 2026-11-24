@@ -1,3 +1,10 @@
+// Goal: Connect the Wi-Fi firmware to its local HTTP interface.
+// Responsibilities: Manage network and server lifecycle, register routes,
+// validate requests, and dispatch them to the shared device runtime.
+// How it works:
+// 1. Begin initializes networking and registers profile-specific HTTP routes.
+// 2. Request handlers return status or validate and forward requested actions.
+// 3. Periodic ticks advance network state and coordinate connection loss.
 #pragma once
 
 #include <atomic>

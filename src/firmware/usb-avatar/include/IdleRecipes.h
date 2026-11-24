@@ -1,3 +1,9 @@
+// Goal: Schedule idle avatar expressions.
+// Responsibilities: Define gaze recipes, blink timing, and scheduler state.
+// How it works:
+// 1. Recipes describe timed sequences of gaze directions.
+// 2. The scheduler advances steps and selects blink timing.
+// 3. Callers use the resulting eye state for rendering.
 #pragma once
 
 #include <assert.h>

@@ -1,3 +1,9 @@
+// Goal: Sample the robot's touch and light sensors and control its RGB effects.
+// Responsibilities: Perform checked bus operations and expose sensor state.
+// How it works:
+// 1. Periodic ticks initialize and sample requested sensors.
+// 2. Fresh values, errors, and revisions describe the latest observations.
+// 3. RGB effects advance or stop according to their duration and device state.
 #pragma once
 
 #include <stdint.h>

@@ -1,3 +1,9 @@
+// Goal: Provide small firmware examples for the lesson build profile.
+// Responsibilities: Illustrate display, Wi-Fi, sensor, and motion APIs.
+// How it works:
+// 1. The lesson profile selects this Arduino entry point.
+// 2. Example functions demonstrate individual device capabilities.
+// 3. Setup and loop run the selected lesson behavior.
 #ifdef NETBOT_LESSON_EXAMPLES
 #include <M5Unified.h>
 #include <M5StackChan.h>

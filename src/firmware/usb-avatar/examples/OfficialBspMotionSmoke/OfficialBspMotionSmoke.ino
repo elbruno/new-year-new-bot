@@ -1,3 +1,10 @@
+// Goal: Run an operator-triggered yaw smoke test using the official BSP.
+// Responsibilities: Initialize the board and accept one touchscreen test.
+// How it works:
+// 1. Setup initializes the BSP and displays the ready prompt.
+// 2. A new touch triggers a short yaw command and then Stop.
+// 3. The display and serial output report that the sequence finished.
+//
 // The BSP enables servo rail power at startup, initializes each servo with
 // torque off, and may write default zero positions to NVS. Motion.stop()
 // schedules position commands on both axes; it is not verified torque-off.

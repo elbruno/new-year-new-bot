@@ -1,3 +1,10 @@
+// Goal: Run the Wi-Fi firmware's device interaction and display loop.
+// Responsibilities: Initialize the device, render its UI, and coordinate
+// sensors, touch, runtime state, and the local HTTP platform.
+// How it works:
+// 1. Setup initializes the hardware, shared runtime, and network platform.
+// 2. The loop advances device state and handles input, including petting.
+// 3. Display updates reflect the active page and current runtime snapshot.
 // This entry point is compiled for the Wi-Fi lab, not the USB or lesson profiles.
 #if defined(NETBOT_WIFI_LAB) && !defined(NETBOT_LESSON_EXAMPLES)
 #include <M5Unified.h>

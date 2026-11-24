@@ -1,3 +1,9 @@
+// Goal: Coordinate camera capture and save requests.
+// Responsibilities: Manage camera work, request identities, and shared resources.
+// How it works:
+// 1. Requests are checked against the current boot and camera state.
+// 2. A backend performs admitted capture or save work.
+// 3. Receipts expose outcomes while cancellation and cleanup are tracked.
 #pragma once
 
 #include <atomic>

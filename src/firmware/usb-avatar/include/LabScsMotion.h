@@ -1,3 +1,9 @@
+// Goal: Adapt the checked motion controller to the SCS servo bus.
+// Responsibilities: Handle calibration, servo operations, and diagnostic state.
+// How it works:
+// 1. The driver checks reviewed limits and stored calibration.
+// 2. Controller operations use the bus to read or command servos.
+// 3. Bus and calibration failures are reported through diagnostics.
 #pragma once
 
 #include <string.h>

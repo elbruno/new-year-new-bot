@@ -1,3 +1,9 @@
+// Goal: Track whether a companion is recently connected.
+// Responsibilities: Store heartbeat state safely across tasks.
+// How it works:
+// 1. Companion updates record connection and heartbeat time.
+// 2. Presence reads compare that time with the expiry interval.
+// 3. Disconnects immediately clear the active state.
 #pragma once
 
 #include <atomic>

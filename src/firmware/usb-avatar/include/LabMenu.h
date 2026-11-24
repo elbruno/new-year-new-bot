@@ -1,3 +1,9 @@
+// Goal: Define and navigate the firmware's touchscreen menus.
+// Responsibilities: Describe pages, buttons, choices, and navigation state.
+// How it works:
+// 1. Page definitions associate screen regions with menu choices.
+// 2. Touch input resolves to a button or navigation event.
+// 3. The firmware uses the resulting choice to update the UI or runtime.
 #pragma once
 
 #include <stddef.h>

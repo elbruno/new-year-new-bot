@@ -1,3 +1,9 @@
+// Goal: Show how to supply an optional local development setup password.
+// Responsibilities: Provide an intentionally invalid example, not a real key.
+// How it works:
+// 1. Copy the example to the ignored private header.
+// 2. Replace the placeholder locally with an appropriate development value.
+// 3. Keep the real header and local-key binaries out of public material.
 #pragma once
 
 // Example only. Copy and edit this line in the ignored wifi_setup_private.h

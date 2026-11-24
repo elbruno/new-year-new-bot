@@ -1,3 +1,9 @@
+// Goal: Coordinate borrowed I2C access for NFC operations.
+// Responsibilities: Track transaction and cleanup outcomes on the shared bus.
+// How it works:
+// 1. NFC operations start a bus transaction when allowed.
+// 2. Reads and writes use the borrowed bus.
+// 3. Cleanup records whether the bus was safely released.
 #pragma once
 
 #include <stddef.h>

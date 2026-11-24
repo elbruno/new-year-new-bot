@@ -2,6 +2,13 @@
 #:property TargetFramework=net10.0
 #:property PublishAot=false
 
+// Goal: Inspect Windows COM device metadata without opening a serial port.
+// Responsibilities: List or watch devices and provide synthetic self-tests.
+// How it works:
+// 1. Command-line options select inventory, watch, JSON, or self-test mode.
+// 2. Windows metadata supplies the current device inventory.
+// 3. Output reports the snapshot or subsequent changes.
+
 using System.Globalization;
 using System.Management;
 using System.Runtime.InteropServices;

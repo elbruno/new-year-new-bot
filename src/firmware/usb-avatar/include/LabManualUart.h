@@ -1,3 +1,9 @@
+// Goal: Provide controlled UART access for manual servo diagnostics.
+// Responsibilities: Manage transport ownership, reads, writes, and Stop checks.
+// How it works:
+// 1. The adapter opens and configures the supplied UART API.
+// 2. Manual transactions send and read bounded data through it.
+// 3. Ownership and Stop state prevent conflicting operations.
 #pragma once
 
 #include <atomic>

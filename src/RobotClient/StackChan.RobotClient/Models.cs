@@ -1,3 +1,9 @@
+// Goal: Define typed contracts shared by the robot client and its callers.
+// Responsibilities: Represent API actions, status, receipts, and other data.
+// How it works:
+// 1. JSON responses are deserialized into the records defined here.
+// 2. Required fields and typed values describe the expected API shape.
+// 3. The client validates and returns these models to applications.
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;

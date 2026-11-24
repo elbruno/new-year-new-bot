@@ -1,3 +1,9 @@
+// Goal: Select checked motion limits from reviewed unit configuration.
+// Responsibilities: Define the outer envelope and validate the unit record.
+// How it works:
+// 1. A private build input may supply the reviewed unit record.
+// 2. Metadata and motion configuration are checked against the outer bounds.
+// 3. Validated defaults or an explicit error are returned to motion setup.
 #pragma once
 
 #include "LabMotion.h"

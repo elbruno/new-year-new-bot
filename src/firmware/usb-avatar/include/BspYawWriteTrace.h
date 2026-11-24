@@ -1,3 +1,9 @@
+// Goal: Observe yaw servo writes during BSP motion diagnostics.
+// Responsibilities: Capture bounded write timing and acknowledgement data.
+// How it works:
+// 1. A diagnostic starts a trace.
+// 2. Instrumented writes record timing and result information.
+// 3. A summary exposes the observations to the test.
 #pragma once
 
 #include <atomic>

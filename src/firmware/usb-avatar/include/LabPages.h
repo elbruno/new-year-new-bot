@@ -1,3 +1,9 @@
+// Goal: Provide the local Wi-Fi lab's built-in web pages.
+// Responsibilities: Store the HTML, styles, and scripts served by the platform.
+// How it works:
+// 1. The platform selects the appropriate page fragments.
+// 2. HTTP handlers serve those fragments to a local browser.
+// 3. Page controls interact with the local firmware API.
 #pragma once
 
 namespace lab {
