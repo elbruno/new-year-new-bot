@@ -35,11 +35,17 @@ dotnet run SerialPorts.cs -- --self-test
 Install a stable .NET 10 SDK first. Read the sample's privacy guidance before
 sharing terminal output or recording a demo.
 
-## Coming soon
+## New Year, New Bot - Episode 1
 
-We’re building a fun AI desk companion with the M5Stack StackChan and exploring how it can connect to .NET services and AI technologies.
+- [Episode 1 resources](episodes/episode-1/README.md)
+- [Firmware 0.5.1 source](src/firmware/usb-avatar/)
+- [C# robot client library](src/RobotClient/StackChan.RobotClient/)
+- [C# console application](src/RobotClient/StackChan.ConsoleDemo/)
+- [Official New Year, New Bot series website](https://elbruno.github.io/new-year-new-bot/)
 
-Follow along as we share the project, demos, and getting-started resources. More details are coming soon!
+Episode 1 explores the StackChan robot, its firmware, and its C# client. The
+episode resource page links to the source projects, build instructions, and
+official device and .NET documentation.
 
 **Project hub:** [aka.ms/newyearnewbot](https://aka.ms/newyearnewbot)
 

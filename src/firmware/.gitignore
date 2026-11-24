@@ -1,0 +1,12 @@
+.cache/
+**/__pycache__/
+**/*.py[cod]
+assets/avatar/stackchan/*.png
+assets/avatar/stackchan/*.rgb565
+assets/avatar/stackchan/manifest.json
+assets/avatar/stackchan/lab-contact-sheet.png
+assets/avatar/stackchan/petting-grumpy-preview.png
+usb-avatar/.pio/
+usb-avatar/include/avatar_assets.h
+usb-avatar/include/wifi_setup_private.h
+usb-avatar/include/wifi_lab_private.h

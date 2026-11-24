@@ -1,0 +1,3 @@
+platformio==6.2.0
+Pillow==12.3.0
+esptool==5.4.0
