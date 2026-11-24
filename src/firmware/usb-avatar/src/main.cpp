@@ -1,3 +1,4 @@
+// The default USB avatar and the Wi-Fi lab have separate Arduino entry points.
 #ifndef NETBOT_WIFI_LAB
 #include <M5Unified.h>
 #include <errno.h>
@@ -8,6 +9,7 @@
 #include "StackChanDefaultMotion.h"
 #include "avatar_assets.h"
 
+// AvatarState tracks the visible expression and timed commands.
 AvatarState avatar;
 lab::LocalMotionMenu menu;
 char input[96];
@@ -19,6 +21,7 @@ bool lastCompleted = false;
 lab::StackChanDefaultMotion defaultMotion;
 static constexpr const char* motionSafetyMode = lab::kCheckedDefaultSafetyMode;
 
+// Map an expression to its compiled RGB565 image, with neutral as the fallback.
 const uint16_t* pixelsFor(Expression expression) {
     switch (expression) {
         case Expression::Blink:
@@ -34,6 +37,7 @@ constexpr uint16_t kMenuBackground = 0x1083;  // RGB565 dark grey
 constexpr uint16_t kMenuText = 0xFFFF;
 
 void showAvatar() {
+    // Draw the selected 320x240 pixel array at the display origin, then overlay Stop.
     M5.Display.pushImage(0, 0, 320, 240, pixelsFor(avatar.visible));
     drawn = avatar.visible;
     M5.Display.setFont(&fonts::Font0);
@@ -99,6 +103,7 @@ void reply(const char* state, uint32_t id) {
     Serial.printf("%s\t%lu\n", state, static_cast<unsigned long>(id));
 }
 
+// Parse the bounded USB protocol and avoid repeating a command with the same ID.
 void handleCommand(char* line) {
     if (!strcmp(line, "MOTION")) {
         const auto status = defaultMotion.controller.snapshot();
@@ -191,6 +196,7 @@ void readCommands() {
 }
 
 void setup() {
+    // Initialize hardware and draw the first frame before the recurring loop starts.
     auto config = M5.config();
     M5.begin(config);
     M5.Display.setBrightness(lab::kDisplayBrightnessDefault);
@@ -205,6 +211,7 @@ void setup() {
 }
 
 void loop() {
+    // Service input, timed state, motion and touch; redraw only when needed.
     M5.update();
     readCommands();
     const uint32_t now = millis();

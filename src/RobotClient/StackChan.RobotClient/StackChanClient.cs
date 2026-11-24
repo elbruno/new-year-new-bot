@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace StackChan.RobotClient;
 
+/// <summary>Typed HTTP access to a StackChan on a trusted, isolated network.</summary>
 public sealed class StackChanClient
 {
     private static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web)
@@ -26,6 +27,7 @@ public sealed class StackChanClient
         "btn-nfc", "btn-read-phone", "btn-read-result"
     ];
 
+    // Accept only a private IPv4 HTTP origin, not a path, proxy URL or public host.
     public StackChanClient(HttpClient httpClient, string address)
     {
         ArgumentNullException.ThrowIfNull(httpClient);
@@ -45,6 +47,7 @@ public sealed class StackChanClient
         return b[0] == 10 || b[0] == 172 && b[1] is >= 16 and <= 31 || b[0] == 192 && b[1] == 168;
     }
 
+    // Version identifies the firmware; status includes the current boot and capabilities.
     public async Task<RobotVersion> GetVersionAsync(CancellationToken cancellationToken = default) =>
         (await SendAsync<RobotVersion>(HttpMethod.Get, "/api/version", null, cancellationToken)).Value;
     public async Task<RobotStatus> GetStatusAsync(CancellationToken cancellationToken = default)
@@ -193,6 +196,7 @@ public sealed class StackChanClient
         return SendAsync<DisplayBrightness>(HttpMethod.Post, "/api/display/brightness", new { brightness }, cancellationToken);
     }
 
+    // Serialize commands, bind each to the current boot and verify the returned receipt.
     public async Task<RobotResult<RobotStatus>> PerformAsync(RobotAction action, int durationMs = 1000,
         CancellationToken cancellationToken = default)
     {
@@ -205,6 +209,7 @@ public sealed class StackChanClient
             if (!status.Capabilities.Contains(name, StringComparer.Ordinal))
                 throw new RobotException($"Action is unavailable: {status.Motion?.Error ?? name}.",
                     code: status.Motion?.Error ?? "unsupported_action");
+            // The next command ID is scoped to the boot reported by this status snapshot.
             uint lastId = status.Command?.CommandId ?? 0;
             if (lastId == uint.MaxValue) throw new RobotException("Command IDs exhausted.", code: "command_ids_exhausted");
             uint id = lastId + 1;
@@ -212,6 +217,7 @@ public sealed class StackChanClient
             var result = await SendAsync<RobotStatus>(HttpMethod.Post, route,
                 new { bootId = status.BootId, commandId = id, action = name, durationMs, configRevision = revision },
                 cancellationToken);
+            // A mismatched receipt leaves the outcome uncertain; never replay it automatically.
             var receipt = result.Value.Command;
             if (result.StatusCode is not (HttpStatusCode.OK or HttpStatusCode.Accepted) ||
                 result.Value.BootId != status.BootId || receipt is null || receipt.CommandId != id ||
@@ -470,6 +476,7 @@ public sealed class StackChanClient
         _ => throw new ArgumentOutOfRangeException(nameof(action))
     };
 
+    // Centralize HTTP and JSON handling; a failed POST may already have reached the robot.
     private async Task<RobotResult<T>> SendAsync<T>(HttpMethod method, string path, object? body, CancellationToken token)
     {
         bool post = method == HttpMethod.Post;

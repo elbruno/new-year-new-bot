@@ -4,6 +4,7 @@ using StackChan.RobotClient;
 
 [assembly: InternalsVisibleTo("StackChan.RobotClient.Tests")]
 
+// The console is a presentation layer over the reusable HTTP client.
 return await Demo.RunAsync(args);
 
 internal static class Demo
@@ -35,6 +36,7 @@ internal static class Demo
         _ => throw new ArgumentOutOfRangeException(nameof(item))
     };
 
+    // Resolve the robot address, create the client, then dispatch menu selections.
     public static async Task<int> RunAsync(string[] args)
     {
         string? address;
@@ -94,6 +96,7 @@ internal static class Demo
                             break;
                     }
                 }
+                // An uncertain command outcome must not trigger an automatic retry.
                 catch (RobotException ex)
                 {
                     if (ex.Code is "unreachable" or "timeout") connection = "Disconnected";
@@ -270,6 +273,7 @@ internal static class Demo
         Message("Sequence finished.");
     }
 
+    // Translate the chosen menu label into a typed action understood by the client.
     private static async Task ActionsAsync(StackChanClient robot)
     {
         string selected = Pick("Expression", "Smile", "Wink", "Neutral", "Look Up", "Sleep", "Wake",
@@ -290,6 +294,7 @@ internal static class Demo
         if (action is not null) await PerformAsync(robot, action.Value);
     }
 
+    // The client sends the HTTP request and validates its correlated receipt.
     private static async Task PerformAsync(StackChanClient robot, RobotAction action)
     {
         var result = await robot.PerformAsync(action, cancellationToken: Shutdown.Token);

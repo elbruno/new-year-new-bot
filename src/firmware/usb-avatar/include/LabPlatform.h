@@ -137,6 +137,7 @@ inline uint32_t newBootId() {
     return value ? value : 1;
 }
 
+// Connect the network and HTTP server to the shared firmware Device runtime.
 class Platform {
     Radio radio;
 public:
@@ -216,6 +217,7 @@ public:
         return DisplayBrightnessQueueResult::Accepted;
     }
 
+    // Initialize networking and register the routes supported by this build profile.
     void begin(uint32_t now) {
         initializeDisplayBrightness();
         operationalEvents.reset(device.snapshot().bootId);
@@ -259,6 +261,7 @@ public:
         config.max_uri_handlers = 32;
 #endif
         if (httpd_start(&server, &config) != ESP_OK) { serverError = "http_start_failed"; return; }
+        // Status and version are reads; actions and Stop are requests to the runtime.
         const struct { const char* path; httpd_method_t method; } routes[] = {
             {"/", HTTP_GET}, {"/api/status", HTTP_GET}, {"/api/network", HTTP_GET},
             {"/api/display/brightness", HTTP_GET}, {"/api/display/brightness", HTTP_POST},
@@ -289,6 +292,7 @@ public:
             {"/api/camera", HTTP_GET}, {"/api/camera/image", HTTP_GET},
             {"/api/camera/capture", HTTP_POST}, {"/api/camera/save", HTTP_POST}
         };
+        // Fail closed if server capacity or registration does not match the route table.
         if (sizeof(routes) / sizeof(routes[0]) != config.max_uri_handlers) {
             serverError = "http_route_capacity_mismatch";
             httpd_stop(server);
@@ -309,6 +313,7 @@ public:
             }
         }
     }
+    // Advance network lifecycle and stop the runtime if connectivity is lost.
     void tick(uint32_t now) {
         {
             std::lock_guard<std::mutex> lock(networkMutex);
@@ -555,6 +560,7 @@ private:
             return reply(request, 503, "{\"error\":\"status_encoding_failed\"}");
         return reply(request, code, json);
     }
+    // The server callback recovers this Platform instance from the registered context.
     static esp_err_t handle(httpd_req_t* request) {
         return static_cast<Platform*>(request->user_ctx)->serve(request);
     }
@@ -1053,6 +1059,7 @@ private:
         return reply(request, 202, json);
     }
 #endif
+    // Dispatch reads to snapshots and validate bounded JSON before processing writes.
     esp_err_t serve(httpd_req_t* request) {
         if (request->method == HTTP_GET) {
 #if defined(NETBOT_WIFI_LAB) && !defined(NETBOT_LESSON_EXAMPLES) && \

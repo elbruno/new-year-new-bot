@@ -42,11 +42,17 @@ unauthenticated; use it only on a trusted, isolated LAN.
 ## Documentation
 
 - [M5Stack StackChan documentation](https://docs.m5stack.com/en/StackChan/)
+- [M5Stack factory firmware guide](https://docs.m5stack.com/en/StackChan/#factory-firmware): covers StackChan World setup, the XiaoZhi-powered AI agent, and MCP configuration.
+- [M5Stack factory firmware source](https://github.com/m5stack/StackChan): device firmware, mobile app, and server.
+- [eShopLite](https://github.com/azure-Samples/eshoplite): the sample application used in the prerecorded StackChan + MCP demonstration.
 - [M5Stack documentation portal](https://docs.m5stack.com/en/)
 - [Espressif ESP32-S3 documentation](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/)
 - [.NET documentation](https://learn.microsoft.com/en-us/dotnet/)
 - [C# guide](https://learn.microsoft.com/en-us/dotnet/csharp/)
 - [`HttpClient` networking guidance](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient)
+
+The factory cloud conversation and MCP experience are separate from this
+project's custom C++ firmware and its local HTTP API.
 
 ## Future episodes
 
