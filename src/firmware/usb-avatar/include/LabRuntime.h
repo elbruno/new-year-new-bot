@@ -1,3 +1,9 @@
+// Goal: Coordinate the robot's firmware behavior in one runtime.
+// Responsibilities: Track command, avatar, motion, audio, and notification state.
+// How it works:
+// 1. Requests are admitted against the command and device state.
+// 2. Runtime updates advance actions and reactions over time.
+// 3. Snapshots expose the resulting state to display and API callers.
 #pragma once
 
 #include "AvatarState.h"

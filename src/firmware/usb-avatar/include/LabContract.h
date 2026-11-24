@@ -1,3 +1,10 @@
+// Goal: Define the firmware's action and command admission contract.
+// Responsibilities: Represent actions, durations, command identities, and
+// boot-scoped command state.
+// How it works:
+// 1. Action names are mapped to supported action identifiers.
+// 2. The ledger validates each command against the current boot and prior IDs.
+// 3. Callers receive admission results without replaying duplicate commands.
 #pragma once
 
 #include <stdint.h>

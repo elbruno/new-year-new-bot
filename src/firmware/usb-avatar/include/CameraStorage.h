@@ -1,3 +1,9 @@
+// Goal: Save captured camera bytes and verify their storage.
+// Responsibilities: Handle bounded writes, cancellation, and readback.
+// How it works:
+// 1. The helper creates a file and writes the image in chunks.
+// 2. It syncs and closes the output, preserving uncertain failures.
+// 3. It reads the file back and compares it with the original bytes.
 #pragma once
 #include "CameraProducer.h"
 

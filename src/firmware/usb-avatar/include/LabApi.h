@@ -1,3 +1,9 @@
+// Goal: Translate between firmware state and the local HTTP API's JSON.
+// Responsibilities: Validate request fields and serialize supported responses.
+// How it works:
+// 1. Helpers reject invalid or oversized JSON and unexpected fields.
+// 2. Parsers convert valid input into firmware request structures.
+// 3. Response helpers encode runtime and device information for HTTP callers.
 #pragma once
 
 #include <cmath>

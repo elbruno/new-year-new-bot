@@ -1,3 +1,9 @@
+// Goal: Share device state between the HTTP platform and firmware loop.
+// Responsibilities: Coordinate runtime, pending UI work, and hardware services.
+// How it works:
+// 1. HTTP handlers admit work or request Stop under device synchronization.
+// 2. The firmware loop advances pending work and hardware state.
+// 3. Snapshots and receipts expose the current outcome to callers.
 #pragma once
 
 #include <mutex>

@@ -1,3 +1,9 @@
+// Goal: Provide local touchscreen controls for checked motion.
+// Responsibilities: Draw the motion menu and translate touch into actions.
+// How it works:
+// 1. Menu state determines which controls are available.
+// 2. Touch events select an action or close the menu.
+// 3. Actions are forwarded to the motion controller and reflected on screen.
 #pragma once
 
 #include <M5Unified.h>

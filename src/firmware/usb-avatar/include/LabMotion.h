@@ -1,3 +1,9 @@
+// Goal: Coordinate checked servo motion and stopping.
+// Responsibilities: Define motion limits, configuration, state, and control.
+// How it works:
+// 1. Configuration and feedback are checked against reviewed limits.
+// 2. Admitted operations advance through the motion controller.
+// 3. Stop and fault states are tracked and exposed to callers.
 #pragma once
 
 #include <stdint.h>

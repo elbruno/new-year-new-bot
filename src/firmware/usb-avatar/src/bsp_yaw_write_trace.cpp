@@ -1,3 +1,9 @@
+// Goal: Instrument BSP yaw writes in the Wi-Fi firmware build.
+// Responsibilities: Connect the wrapped servo write to diagnostic tracing.
+// How it works:
+// 1. The link-time wrapper observes an SCS servo write.
+// 2. It calls the original write and records timing and acknowledgement.
+// 3. The trace helper retains the result for diagnostic summaries.
 #ifdef NETBOT_WIFI_LAB
 #include <esp_timer.h>
 #include "BspYawWriteTrace.h"

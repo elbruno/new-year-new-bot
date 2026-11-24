@@ -1,3 +1,9 @@
+// Goal: Provide a bounded, boot-scoped diagnostic log.
+// Responsibilities: Store log entries and parse paginated reader queries.
+// How it works:
+// 1. Producers append diagnostic lines to a fixed-size buffer.
+// 2. Readers provide boot and sequence bounds for a page.
+// 3. Pages report entries and loss counters.
 #pragma once
 
 #include <atomic>

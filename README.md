@@ -49,6 +49,14 @@ official device and .NET documentation.
 
 **Project hub:** [aka.ms/newyearnewbot](https://aka.ms/newyearnewbot)
 
+## Source file headers
+
+First-party source files must have a short English header describing their
+Goal, Responsibilities, and How it works, using the language's native comment
+syntax. Add headers to new files and maintain them when responsibilities change;
+keep them accurate and concise, and preserve existing license notices and
+required compiler directives. Generated and third-party code is excluded.
+
 ---
 
 *A community project in progress. Hardware, software, schedule, and stream details will be shared as they’re confirmed.*

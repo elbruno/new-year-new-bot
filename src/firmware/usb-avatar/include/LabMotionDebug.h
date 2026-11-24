@@ -1,3 +1,9 @@
+// Goal: Represent checked motion observations for diagnostics.
+// Responsibilities: Define calibration, bus, servo, and Stop observations.
+// How it works:
+// 1. Motion code records structured observations and failure details.
+// 2. Snapshots group observations for a particular operation.
+// 3. Diagnostic consumers report the recorded state without inventing results.
 #pragma once
 
 #include <stdint.h>

@@ -1,3 +1,9 @@
+// Goal: Expose a bounded history of firmware operational events.
+// Responsibilities: Define event identities, metadata, storage, and queries.
+// How it works:
+// 1. Firmware operations append typed events to the bounded history.
+// 2. Readers request pages using boot and sequence information.
+// 3. Results include entries and counters for missing or dropped events.
 #pragma once
 
 #include <atomic>

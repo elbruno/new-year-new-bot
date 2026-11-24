@@ -1,3 +1,9 @@
+// Goal: Coordinate the camera's SCCB control bus.
+// Responsibilities: Track bus ownership, register transfers, and cleanup state.
+// How it works:
+// 1. A camera operation begins with a cancellation source.
+// 2. Register and power operations use the shared bus.
+// 3. Failures and uncertain cleanup are retained for callers.
 #pragma once
 
 #include <M5Unified.h>

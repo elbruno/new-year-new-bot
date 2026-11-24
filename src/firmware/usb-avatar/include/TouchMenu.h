@@ -1,3 +1,9 @@
+// Goal: Handle the compact local touchscreen menu.
+// Responsibilities: Track menu visibility and map touch coordinates to events.
+// How it works:
+// 1. Callers pass touch input and time to the menu.
+// 2. The menu checks its items and current state.
+// 3. It returns an event for the firmware to handle.
 #pragma once
 
 #include <stdint.h>

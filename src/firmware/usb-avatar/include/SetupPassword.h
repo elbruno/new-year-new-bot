@@ -1,3 +1,9 @@
+// Goal: Create the temporary Wi-Fi setup password.
+// Responsibilities: Validate a development password or generate a bounded one.
+// How it works:
+// 1. The caller supplies an output buffer and optional development value.
+// 2. The helper validates that value or selects characters using a random source.
+// 3. It writes a terminated password or reports failure.
 #pragma once
 
 #include <stddef.h>

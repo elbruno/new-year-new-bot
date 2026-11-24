@@ -1,3 +1,10 @@
+// Goal: Manage the firmware's Wi-Fi connection and setup lifecycle.
+// Responsibilities: Validate credentials and track connection and setup state
+// independently of the platform-specific radio driver.
+// How it works:
+// 1. Startup loads saved credentials through the driver.
+// 2. Setup can accept a candidate and initiate a connection.
+// 3. Periodic updates report connection state and failures.
 #pragma once
 
 #include <stdint.h>

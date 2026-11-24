@@ -1,4 +1,11 @@
-// The default USB avatar and the Wi-Fi lab have separate Arduino entry points.
+// Goal: Run the default USB-controlled avatar firmware.
+// Responsibilities: Initialize the device, draw expressions, and handle USB
+// commands and local touch controls.
+// How it works:
+// 1. Setup initializes hardware and displays the current avatar.
+// 2. The loop advances commands, touch input, and runtime state.
+// 3. Changed expressions are drawn from their RGB565 image arrays.
+// The Wi-Fi lab uses a separate Arduino entry point.
 #ifndef NETBOT_WIFI_LAB
 #include <M5Unified.h>
 #include <errno.h>

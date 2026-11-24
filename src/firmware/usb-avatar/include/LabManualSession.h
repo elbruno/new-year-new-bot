@@ -1,3 +1,9 @@
+// Goal: Coordinate a checked manual servo diagnostic session.
+// Responsibilities: Manage session phases, feedback, and motion bounds.
+// How it works:
+// 1. The session prepares power and reads servo configuration and feedback.
+// 2. Admitted operations advance through bounded transaction phases.
+// 3. Stop and close operations track the resulting state and faults.
 #pragma once
 
 #include <string.h>

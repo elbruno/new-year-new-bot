@@ -1,3 +1,9 @@
+// Goal: Connect checked motion to StackChan calibration and servo hardware.
+// Responsibilities: Read calibration and manage the SCS bus and power state.
+// How it works:
+// 1. Calibration is read from device storage with explicit observations.
+// 2. The bus coordinates servo access and power operations.
+// 3. Failures and Stop-related state are reported to the motion driver.
 #pragma once
 
 #include <atomic>

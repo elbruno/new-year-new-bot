@@ -1,3 +1,9 @@
+// Goal: Plan a bounded single-axis motion test.
+// Responsibilities: Validate reviewed bounds and fresh stationary feedback.
+// How it works:
+// 1. The planner checks calibration, feedback, and requested step.
+// 2. It computes a target only if it remains within the selected bounds.
+// 3. The caller must independently verify provenance and execute safely.
 #pragma once
 
 #include "LabMotion.h"

@@ -1,3 +1,9 @@
+// Goal: Decode a supported NFC text record.
+// Responsibilities: Validate NDEF structure and bounded UTF-8 text.
+// How it works:
+// 1. The decoder checks record and language metadata.
+// 2. It validates the text bytes and their length.
+// 3. It returns decoded text or a specific error.
 #pragma once
 
 #include <algorithm>

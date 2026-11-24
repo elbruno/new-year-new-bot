@@ -1,3 +1,9 @@
+// Goal: Coordinate the firmware's WAV audio test.
+// Responsibilities: Validate audio files and manage playback through a backend.
+// How it works:
+// 1. File names and WAV data are checked against supported bounds and format.
+// 2. Admitted files are loaded and played by the audio backend.
+// 3. Playback and cleanup state are tracked for callers.
 #pragma once
 
 #include <stdint.h>

@@ -1,3 +1,9 @@
+// Goal: Connect camera capture and storage to device hardware.
+// Responsibilities: Implement the camera backend and file operations.
+// How it works:
+// 1. The backend initializes the board and captures a camera frame.
+// 2. Camera helpers encode the image and save it through storage.
+// 3. Background task helpers run work for the camera producer.
 #pragma once
 #include <SD.h>
 #include <SPI.h>

@@ -1,3 +1,9 @@
+// Goal: Coordinate display of supported images from device storage.
+// Responsibilities: Validate image files and track image display requests.
+// How it works:
+// 1. File names and JPEG data are checked against supported limits.
+// 2. A backend loads and displays an admitted image.
+// 3. Request state and errors are exposed to callers.
 #pragma once
 
 #include <stdint.h>

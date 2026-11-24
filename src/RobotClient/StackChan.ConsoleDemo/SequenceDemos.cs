@@ -1,3 +1,9 @@
+// Goal: Demonstrate bounded sequences using the reusable robot client.
+// Responsibilities: Coordinate text, RGB, and expression examples and Stop checks.
+// How it works:
+// 1. A sequence submits one operation and reports progress.
+// 2. It observes the operation until completion, Stop, or a deadline.
+// 3. Uncertain or failed outcomes end the sequence rather than being replayed.
 using StackChan.RobotClient;
 
 internal static class SequenceDemos

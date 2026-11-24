@@ -1,3 +1,9 @@
+// Goal: Manage bounded RGB effects requested by the firmware.
+// Responsibilities: Validate colors and durations and track effect state.
+// How it works:
+// 1. Requests are checked and colors are converted to RGB565.
+// 2. The controller starts an admitted effect during a tick.
+// 3. Completion, cancellation, and errors are recorded for callers.
 #pragma once
 
 #include <stdint.h>

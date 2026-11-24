@@ -1,3 +1,9 @@
+// Goal: Track the avatar's visible expression over time.
+// Responsibilities: Represent expressions and manage timed avatar commands.
+// How it works:
+// 1. Callers apply or configure an expression.
+// 2. Updates advance timed and automatic state.
+// 3. Renderers read the visible expression to choose an image.
 #pragma once
 
 #include <stdint.h>

@@ -1,3 +1,9 @@
+// Goal: Render compact status icons over the avatar.
+// Responsibilities: Represent Wi-Fi, quiet, battery, and companion states.
+// How it works:
+// 1. Device status selects each icon's visual state.
+// 2. Pixel helpers paint the icon into an RGB565 buffer.
+// 3. The display uses the rendered buffers in its status strip.
 #pragma once
 
 #include <stdint.h>

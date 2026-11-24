@@ -1,3 +1,9 @@
+// Goal: Connect image display requests to device storage and display hardware.
+// Responsibilities: List and load image files for the display backend.
+// How it works:
+// 1. Background tasks mount storage and inspect or load files.
+// 2. Loaded image data is provided to the image display state machine.
+// 3. The backend coordinates drawing and cleanup.
 #pragma once
 
 #include <M5Unified.h>

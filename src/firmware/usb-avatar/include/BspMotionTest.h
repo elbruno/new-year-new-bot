@@ -1,3 +1,9 @@
+// Goal: Coordinate the operator-initiated BSP motion test.
+// Responsibilities: Admit test actions and track home references and outcomes.
+// How it works:
+// 1. Requests are checked and reserved against test state and bounds.
+// 2. The test invokes the BSP using the required home reference.
+// 3. Stop, failures, and uncertain results are recorded explicitly.
 #pragma once
 
 #include <atomic>

@@ -1,3 +1,10 @@
+// Goal: Provide reusable HTTP communication with StackChan.
+// Responsibilities: Query robot data, send supported actions, and validate
+// responses and command correlation.
+// How it works:
+// 1. The client sends HTTP requests to a private robot endpoint.
+// 2. JSON responses are read into typed models.
+// 3. Command receipts are checked against the request and current boot.
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
