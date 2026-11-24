@@ -1,3 +1,4 @@
+// This entry point is compiled for the Wi-Fi lab, not the USB or lesson profiles.
 #if defined(NETBOT_WIFI_LAB) && !defined(NETBOT_LESSON_EXAMPLES)
 #include <M5Unified.h>
 #include <M5StackChan.h>
@@ -312,6 +313,7 @@ uint32_t drawnNfcRevision = UINT32_MAX;
 uint32_t drawnSensorsRevision = UINT32_MAX;
 uint32_t observedStopEpoch = 0;
 lab::StatusStripGesture statusStripGesture;
+// Remember the last rendered state so unchanged display regions need not be redrawn.
 Expression labDrawn = Expression::Sleep;
 lab::Indicator drawnIndicator = lab::Indicator::None;
 const char* drawnRuntimeError = nullptr;
@@ -568,6 +570,7 @@ void updateBattery(uint32_t now) {
     batteryRead = true;
 }
 
+// Select the compiled image for the current runtime expression.
 const uint16_t* labPixels(Expression expression) {
     switch (expression) {
         case Expression::Blink:
@@ -797,6 +800,7 @@ void drawNotification(const lab::NotificationSnapshot& notification, bool detail
     M5.Display.setTextStyle(style);
 }
 
+// Render the active page from snapshots shared with the HTTP and device runtime.
 void drawLab(uint32_t now) {
     lab::NotificationSnapshot notification;
     {
@@ -1474,6 +1478,7 @@ void resetPettingDetection() {
     if (!topSettleComplete) topSettleStarted = false;
 }
 
+// Only fresh, eligible top-sensor samples can start a petting reaction.
 void updatePetting(uint32_t now, bool eligible, bool stopped) {
     std::lock_guard<std::mutex> lock(labDevice.mutex);
     if (!pettingEnabled || !eligible || !pettingFaceEligible(now) || stopped || demoSensors.topError) {
@@ -1481,11 +1486,13 @@ void updatePetting(uint32_t now, bool eligible, bool stopped) {
         return;
     }
     if (!demoSensors.topSampleFresh()) return;
+    // Let the sensor settle at startup before accepting a release and new touch.
     if (!topSettleComplete) {
         if (!topSettleStarted) { topSettleStarted = true; topSettleAt = now; }
         if (now - topSettleAt < 500) return;
         topSettleComplete = true;
     }
+    // Require two released samples followed by two touched samples to debounce input.
     const bool touched = demoSensors.top[0] || demoSensors.top[1] || demoSensors.top[2];
     if (!touched) {
         topTouchSamples = 0;
@@ -1497,6 +1504,7 @@ void updatePetting(uint32_t now, bool eligible, bool stopped) {
     if (++topTouchSamples < 2) return;
     topReleased = false;
     topTouchSamples = 0;
+    // The runtime selects the reaction; the sensor helper pulses the corresponding effect.
     if (labDevice.runtime.petSequence(now, pettingSoundEnabled, esp_random()).execute)
         demoSensors.pulsePetting(now, labDevice.runtime.isQuiet(),
             labDevice.runtime.pettingAnimationState().animation == lab::PettingAnimation::Grumpy);
@@ -1846,6 +1854,7 @@ bool labChoice(const lab::Button& button, uint32_t now,
 }
 
 void setup() {
+    // Initialize the device, shared runtime, display and local HTTP platform.
     // Ordinary startup leaves BSP motion untouched; only the explicit experiment initializes it.
     auto config = M5.config();
     config.internal_mic = false;
@@ -1952,6 +1961,7 @@ void setup() {
 }
 
 void loop() {
+    // Advance hardware and shared state, process touch, and render changes each iteration.
     if (shutdownIssued) { resetPettingDetection(); delay(1); return; }
     M5.update();
     const uint32_t now = millis();
