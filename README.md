@@ -2,7 +2,7 @@
 
 **Tiny robot. Big plans for 2027.**
 
-**[Get the robot](https://aka.ms/newyearnewbot/robot)**
+**[Get the robot](https://aka.ms/newyearnewbot/robot?utm_source=new_year_new_bot&utm_medium=referral&utm_campaign=series_2026&utm_content=robot)**
 
 **Explore the series and proposed architecture:** [Project page](https://aka.ms/newyearnewbot) ([direct link](https://elbruno.github.io/new-year-new-bot/))
 
