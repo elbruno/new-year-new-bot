@@ -20,6 +20,11 @@ Presentation slides (v07): [Download the PDF](sessions/26-11-dotnetconf/Give-You
 
 ## Code samples
 
+[Capture and download StackChan microphone audio](src/microphone-capture/README.md)
+shows a bounded CoreS3/M5Unified C++ recording and a .NET 11 client that
+downloads PCM and opens a local WAV file. The examples target firmware 0.6.1+
+and do not include or flash the private firmware implementation.
+
 [Which device is on this COM port?](src/serial-ports/README.md) is a standalone
 .NET 10 file-based C# console app for Windows. Inspect USB device metadata,
 watch unplug/replug events, or export JSON without opening a serial port or

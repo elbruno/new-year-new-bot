@@ -10,11 +10,14 @@ The API is unauthenticated. Use it only on a trusted, isolated local network;
 do not expose it to the Internet. The published 0.5.1 firmware source is a
 draft snapshot, not evidence of the exact firmware installed on a robot.
 Examples below are illustrative, not observations of physical hardware.
+The microphone contract below applies to compatible Wi-Fi lab firmware 0.6.1
+or later. The published 0.5.1 source snapshot does not contain its firmware
+implementation.
 
 ## Endpoint reference
 
 Each row is a registered method and route. **Base** means the 32 routes in
-the common Wi-Fi server table; **Extended** means the 13 additional routes
+the common Wi-Fi server table; **Extended** means the 17 additional routes
 compiled only under the condition in [Build profiles](#build-profiles-and-endpoint-availability).
 Registration does not guarantee that a device feature is ready or that a
 request is authorized by runtime state.
@@ -66,6 +69,10 @@ request is authorized by runtime state.
 | GET | `/api/display/rgb` | Read RGB effect state. | Extended |
 | POST | `/api/display/rgb` | Request an RGB effect. | Extended |
 | GET | `/api/sensors` | Read sensor and petting diagnostics. | Extended |
+| GET | `/api/microphone/capture` | Read current or identity-bound capture state. | Extended |
+| POST | `/api/microphone/capture` | Start a bounded microphone capture. | Extended |
+| POST | `/api/microphone/capture/cancel` | Cancel a boot/request-scoped capture. | Extended |
+| GET | `/api/microphone/capture/download` | Download completed transient PCM. | Extended |
 
 GET routes are reads. POST routes can change device or network state.
 Diagnostic, camera, setup, motion, and UI controls have additional
@@ -504,6 +511,50 @@ or `camera_boot_init_failed`. Identity or cleanup conflicts must not be
 treated as successful captures or replayed blindly. Implementation:
 `LabPlatform.h` and `CameraProducer.h`.
 
+### Microphone capture
+
+These Extended routes are available in the Wi-Fi lab profile on compatible
+firmware 0.6.1 or later. They support CoreS3 and StackChan microphone hardware,
+not CoreS3 SE.
+Capture is opt-in, finite, half-duplex with the speaker, and stored only in
+temporary PSRAM. The public 0.5.1 firmware source snapshot does not include
+this implementation.
+
+Start with `GET /api/microphone/capture` to read `version`, `bootId`,
+`requestId`, `durationMs`, `sampleRate`, `channels`, `bitsPerSample`, `state`,
+`byteLength`, `error`, and `downloadAvailable`. The initial snapshot uses
+`state:"idle"` and `requestId:0`. The next request must use the same nonzero
+`bootId` and the next sequential nonzero `requestId`.
+
+`POST /api/microphone/capture` accepts exactly positive unsigned `bootId`,
+`requestId`, and integer `durationMs` from 1 through 3000. Admission returns
+202 with `state:"queued"` and zero `byteLength`. Bind status reads to the
+same identity:
+
+```http
+GET /api/microphone/capture?bootId=123&requestId=1
+```
+
+The format is mono, signed PCM16 little-endian at 16 kHz. A three-second
+capture contains 48,000 samples and 96,000 bytes. The firmware allocates this
+bounded buffer in PSRAM and does not store audio on the microSD card.
+`downloadAvailable` indicates whether the completed buffer can be leased.
+
+`POST /api/microphone/capture/cancel` accepts exactly `bootId` and
+`requestId`, returning 202 when cancellation is accepted.
+`GET /api/microphone/capture/download?bootId=123&requestId=1` returns raw
+`application/octet-stream` only for the matching completed capture. Validate
+the even `Content-Length` (2 through 96,000 bytes) and these exact response
+headers: `X-Microphone-Sample-Rate: 16000`,
+`X-Microphone-Channels: 1`, `X-Microphone-Bits-Per-Sample: 16`,
+`X-Microphone-Boot-Id`, and `X-Microphone-Request-Id`.
+
+Invalid input returns 400. Identity, busy, cancellation, or unavailable
+download conflicts return 409; an unavailable microphone or server resource
+returns 503. Check the returned error and current status. A timed-out POST may
+have been admitted; do not automatically replay it. The raw transfer is
+boot/request-scoped and does not include a WAV header.
+
 ## Build profiles and endpoint availability
 
 - `cores3` uses the USB avatar entry point, not the Wi-Fi HTTP server.
@@ -570,6 +621,9 @@ the boot and capabilities. `PerformAsync()` checks current status and
 capabilities, selects `/api/actions`, `/api/motion`, or `/api/routines`
 according to the action, and correlates the command receipt. It treats
 uncertain POST outcomes as uncertain rather than automatically replaying them.
+The [microphone capture example](../../src/microphone-capture/README.md)
+shows the firmware 0.6.1 microphone contract using `HttpClient`, including
+boot/request-correlated polling and PCM download validation.
 
 ## Source references
 
@@ -585,5 +639,6 @@ uncertain POST outcomes as uncertain rather than automatically replaying them.
 - [Experimental BSP motion test](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/include/BspMotionTest.h), [audio test](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/include/LabAudioTest.h), and [sensor state](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/include/LabDevice.h)
 - [Operational events](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/include/LabOperationalEvents.h) and [retained logs](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/include/LabRemoteLog.h)
 - [Camera producer](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/include/CameraProducer.h)
+- [Microphone capture C++ and .NET samples](../../src/microphone-capture/README.md)
 - [Wi-Fi firmware entry point](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/src/wifi_main.cpp)
 - [PlatformIO build profiles](https://github.com/elbruno/new-year-new-bot/blob/main/src/firmware/usb-avatar/platformio.ini)
